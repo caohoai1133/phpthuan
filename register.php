@@ -1,6 +1,6 @@
 
 <?php
-$connect = mysqli_connect('localhost', 'root', '', 'user');
+$connect = mysqli_connect('localhost', 'root', '', 'login1');
 mysqli_set_charset($connect, "utf8");
 ?>
 <!DOCTYPE html>
@@ -21,7 +21,7 @@ mysqli_set_charset($connect, "utf8");
 
         .login_form {
             width: 300px;
-            height: 450px;
+            height: 550px;
             border: 2px solid black;
             margin-left: auto;
             margin-right: auto;
@@ -80,27 +80,36 @@ mysqli_set_charset($connect, "utf8");
 
                         <input type="password" class="form-control" name="passlg" placeholder="Nhập mật khẩu..." required>
                     </div>
+                    <div class="form-group">
+
+                        <input type="password" class="form-control" name="passlg_again" placeholder="Nhập lại mật khẩu..." required>
+                    </div>
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" name="fullname" placeholder="nhập đầy đủ họ tên..." required>
+                    </div>
                     <br>
                     <?php
-                    // if (isset($_POST["dangnhap"])) {
-                    //     $tk = $_POST["user_name_lg"];
-                    //     $mk = $_POST["passlg"];
-                    //     $rows = mysqli_query($connect, "
-				    //         select * from login where username = '$tk' and password = '$mk'");
-                    //     $count = mysqli_num_rows($rows);
-                    //     if ($count == 1) {
-                    //         echo "<script type='text/javascript'>alert('Đăng nhập thành công!');</script>";
-                    //         setcookie("username",$tk);
-                    //         setcookie("password",$mk);
-                    //     } else {
-                    //         echo "<h style='color:red;'>" . "Mật khẩu hoặc tên đăng nhập ko đúng". "</h>";
-                    //         // echo "<script type='text/javascript'>alert('mật khẩu hoặc tên đăng nhập ko đúng');</script>";
-                    //     }
-                    // }
+                    if(isset($_POST["dangky"])){
+                     $tk = $_POST["user_name_lg"];
+                     $mk = $_POST["passlg"];
+                     $nlmk= $_POST["passlg_again"];
+                     $fullname=$_POST["fullname"];
+                      if ($mk===$nlmk){
+                        
+                       
+                         mysqli_query($connect, " insert into user (username,password,fullname) values ('$tk','$mk','$fullname')");
+                            echo "<script type='text/javascript'>alert('Đăng ký thành công!');</script>";
+                            setcookie("status","đăng ký thành công");   
+                    
+                }
+                else{
+                    echo "<h style='color:red;'>" . "mật khẩu không trùng khớp!". "</h>";
+                }}
                     ?>
                     <br>
 
-                    <button type="submit" class="btn " name="dangnhap">Login</button>
+                    <button type="submit" class="btn " name="dangky">Register</button>
                         <div class="btn-register">
                     <a  class="link" href="login.php">Login</a>
                 </div>

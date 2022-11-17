@@ -1,5 +1,5 @@
 <?php
-$connect = mysqli_connect('localhost', 'root', '', 'user');
+$connect = mysqli_connect('localhost', 'root', '', 'login1');
 mysqli_set_charset($connect, "utf8");
 ?>
 <!DOCTYPE html>
@@ -85,7 +85,7 @@ mysqli_set_charset($connect, "utf8");
                         $tk = $_POST["user_name_lg"];
                         $mk = $_POST["passlg"];
                         $rows = mysqli_query($connect, "
-				            select * from login where username = '$tk' and password = '$mk'");
+				            select * from user where username = '$tk' and password = '$mk'");
                         $count = mysqli_num_rows($rows);
                         if ($count == 1) {
                             echo "<script type='text/javascript'>alert('Đăng nhập thành công!');</script>";
