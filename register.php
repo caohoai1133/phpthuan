@@ -100,7 +100,8 @@ mysqli_set_charset($connect, "utf8");
                        
                          mysqli_query($connect, " insert into user (username,password,fullname) values ('$tk','$mk','$fullname')");
                             echo "<script type='text/javascript'>alert('Đăng ký thành công!');</script>";
-                            setcookie("status","đăng ký thành công");   
+                            setcookie("status","đăng ký thành công");  
+                            header("location:login.php"); 
                     
                 }
                 else{

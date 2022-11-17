@@ -91,6 +91,7 @@ mysqli_set_charset($connect, "utf8");
                             echo "<script type='text/javascript'>alert('Đăng nhập thành công!');</script>";
                             setcookie("username",$tk);
                             setcookie("password",$mk);
+                            header("location:dashboard.php");
                         } else {
                             echo "<h style='color:red;'>" . "Mật khẩu hoặc tên đăng nhập ko đúng". "</h>";
                             // echo "<script type='text/javascript'>alert('mật khẩu hoặc tên đăng nhập ko đúng');</script>";
